@@ -273,5 +273,10 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
             }
             throw new NoSuchElementException();
         }
+        
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
 }
