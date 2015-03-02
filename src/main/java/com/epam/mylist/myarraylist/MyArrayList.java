@@ -12,7 +12,6 @@ public class MyArrayList<Type> implements MyList<Type>, RandomAccess {
     private static final int DEFAULT_CAPACITY = 10;
     private Object[] list;
     private int size = 0;
-    private int minCapacity = -1;
 
     public MyArrayList() {
         this(DEFAULT_CAPACITY);
@@ -24,12 +23,10 @@ public class MyArrayList<Type> implements MyList<Type>, RandomAccess {
             throw new IllegalArgumentException();
         }
         addAll(c.toArray());
-        minCapacity = c.size();
     }
 
     public MyArrayList(int initialCapacity) {
         list = new Object[initialCapacity];
-        this.minCapacity = initialCapacity;
     }
 
     public void ensureCapacity(int minCap) {
@@ -39,7 +36,6 @@ public class MyArrayList<Type> implements MyList<Type>, RandomAccess {
         Object[] temp = new Object[minCap];
         System.arraycopy(list, 0, temp, 0, size);
         list = temp;
-        this.minCapacity = minCap;
     }
 
     public void trimToSize() {
