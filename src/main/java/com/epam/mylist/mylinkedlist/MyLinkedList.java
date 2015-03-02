@@ -41,7 +41,7 @@ public class MyLinkedList<Type> implements MyList<Type>, MyStack<Type>,
 
     public void addFirst(Type data) {
         Node<Type> node = new Node<>(data);
-        if(addFirstElementInList(node)){
+        if (addFirstElementInList(node)) {
             return;
         }
         node.setPrev(null);
@@ -53,7 +53,7 @@ public class MyLinkedList<Type> implements MyList<Type>, MyStack<Type>,
 
     public void addLast(Type data) {
         Node<Type> node = new Node<>(data);
-        if(addFirstElementInList(node)){
+        if (addFirstElementInList(node)) {
             return;
         }
         node.setPrev(last);
