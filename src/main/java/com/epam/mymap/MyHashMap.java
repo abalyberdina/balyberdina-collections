@@ -252,9 +252,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
         @Override
         public SimpleEntry<K, V> next() {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
             SimpleEntry<K, V> result = null;
             if (size != 0) {
                 for (; positionInArrayList < capacity; positionInArrayList++) {
