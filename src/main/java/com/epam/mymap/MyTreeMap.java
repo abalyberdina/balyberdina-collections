@@ -130,7 +130,7 @@ public class MyTreeMap<K, V> implements MyMap<K, V> {
         if (x == null) {
             return false;
         }
-        return (x.color == RED);
+        return x.color == RED;
     }
 
     private int size(SimpleEntry<K, V> x) {
@@ -193,7 +193,7 @@ public class MyTreeMap<K, V> implements MyMap<K, V> {
             if (isRed(h.left)) {
                 h = rotateRight(h);
             }
-            if (compareKeys(key, h.getKey()) == 0 && (h.right == null)) {
+            if (compareKeys(key, h.getKey()) == 0 && h.right == null) {
                 return null;
             }
             if (!isRed(h.right) && !isRed(h.right.left)) {
