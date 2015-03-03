@@ -176,7 +176,7 @@ public class MyLinkedList<Type> implements MyList<Type>, MyStack<Type>,
         if (index < 0 || index >= size) {
             throw new MyIndexOutOfBoundsException();
         }
-        if(size == 1) {
+        if (size == 1) {
             Type result = first.getElement();
             first = null;
             last = null;
