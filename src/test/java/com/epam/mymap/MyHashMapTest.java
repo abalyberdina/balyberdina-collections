@@ -269,4 +269,42 @@ public class MyHashMapTest {
     public void iteratorNextEmptyListNoSuchElementException() {
         hashMap.entryIterator().next();
     }
+    
+     @Test
+    public void iteratorRemoveRemoveAllElementsSizeShouldBeZero() {
+        String[] keys = { "New String1", "One", "blablabla", "Hello World",
+                "HelloJava", "Two", "Test1" };
+        for (int i = 0; i < keys.length; i++) {
+            hashMap.put(keys[i], i);
+        }
+        Iterator<? extends Entry<String, Object>> iter = hashMap
+                .entryIterator();
+        try {
+            while (iter.hasNext()) {
+                iter.remove();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(0, hashMap.size());
+    }
+
+    @Test
+    public void iteratorRevoveRemoveCurrentElementCheckSize() {
+        String[] keys = { "New String1", "One", "blablabla", "Hello World",
+                "HelloJava", "Two", "Test1" };
+        for (int i = 0; i < keys.length; i++) {
+            hashMap.put(keys[i], i);
+        }
+        Iterator<? extends Entry<String, Object>> iter = hashMap
+                .entryIterator();
+        iter.next();
+        iter.remove();
+        assertEquals(keys.length - 1, hashMap.size());
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void iteratorRemoveEmptyMapNoSuchElementException() {
+        hashMap.entryIterator().remove();
+    }
 }
