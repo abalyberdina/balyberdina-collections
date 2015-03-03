@@ -190,7 +190,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     }
 
     private void transformMap(int newCapacity) {
-        MyArrayList<MyLinkedList<SimpleEntry<K, V>>> temp =
+        MyArrayList<MyLinkedList<SimpleEntry<K, V>>> temp = 
                 new MyArrayList<MyLinkedList<SimpleEntry<K, V>>>(
                 newCapacity);
         for (int i = 0; i < newCapacity; i++) {
@@ -252,6 +252,9 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
         @Override
         public SimpleEntry<K, V> next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
             SimpleEntry<K, V> result = null;
             if (size != 0) {
                 for (; positionInArrayList < capacity; positionInArrayList++) {
@@ -267,16 +270,29 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
                         count++;
                         result = iterator.next();
                         return result;
+                    } else {
+                        if (iterator != null) {
+                            iterator = null;
+                        }
                     }
                 }
 
             }
             throw new NoSuchElementException();
         }
-        
+
         @Override
         public void remove() {
-            throw new UnsupportedOperationException();
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            if (iterator == null || !iterator.hasNext()) {
+                --count;
+                MyHashMap.this.remove(next().getKey());
+            } else {
+                iterator.remove();
+                size--;
+            }
         }
     }
 }
