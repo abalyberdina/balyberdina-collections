@@ -1,0 +1,1 @@
+Collections(array list, linked list, hash map, tree map and class Collections) covered by jUnit tests
